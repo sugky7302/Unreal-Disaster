@@ -1,0 +1,2 @@
+[FrameDef]
+GAMEOVER_DISCONNECTED=你已经断开了连接。111
