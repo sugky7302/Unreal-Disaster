@@ -1,10 +1,6 @@
 输入路径：E:/projects/UnrealDisaster/UnrealDisaster.w3x
-输出路径：E:/projects/UnrealDisaster/UnrealDisaster
+输出路径：E:/projects/UnrealDisaster
 输入格式：Mpq
 输出模式：lni
 结果：0 个错误，0 条警告
-用时：0.742 秒
-==========================
-无效的物编数据 (1)
-==========================
-技能 A000 命令移动技能 - [Ytip]: 命令移动技能
+用时：0.943 秒

@@ -8,7 +8,9 @@
             "args": [
                 ".\\tools\\執行.lua",
                 "${workspaceRoot}"
-            ]
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": ["打包(Obj)"]
         },
         {
             "label": "配置",

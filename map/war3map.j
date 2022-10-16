@@ -45,28 +45,26 @@ integer japi__key=StringHash("jass")
 //endglobals from japi
 //globals from LocalActionLib:
 constant boolean LIBRARY_LocalActionLib=true
-constant hashtable LocalActionLib___ht=japi_ht
-constant integer LocalActionLib___key=StringHash("jass")
+constant hashtable LocalActionLib__ht=japi_ht
+constant integer LocalActionLib__key=StringHash("jass")
 //endglobals from LocalActionLib
 //globals from d3d:
 constant boolean LIBRARY_d3d=true
-constant hashtable d3d___ht=japi_ht
-constant integer d3d___key=StringHash("jass")
+constant hashtable d3d__ht=japi_ht
+constant integer d3d__key=StringHash("jass")
 //endglobals from d3d
     // User-defined
 unit udg_unit= null
 item udg_item= null
 destructable udg_destructable= null
     // Generated
+trigger gg_trg_main= null
 trigger gg_trg_japi_constant_lib= null
 trigger gg_trg_japi= null
 trigger gg_trg_d3d= null
 trigger gg_trg_async_japi= null
 trigger gg_trg_check_version= null
 trigger gg_trg_wenhao_texture= null
-unit gg_unit_Hamg_0025= null
-unit gg_unit_Hblm_0002= null
-trigger gg_trg_main= null
 
 trigger l__library_init
 
@@ -758,107 +756,107 @@ endfunction
 
 //library japi ends
 //library LocalActionLib:
-    function LocalActionLib___Call takes string str returns nothing
+    function LocalActionLib__Call takes string str returns nothing
         call UnitId(str)
     endfunction
     
     //本地發布無目標命令
     function LocalOrder takes integer order,integer flags returns nothing
-        call SaveStr(LocalActionLib___ht, LocalActionLib___key, 0, "(II)V")
-        call SaveInteger(LocalActionLib___ht, LocalActionLib___key, 1, order)
-        call SaveInteger(LocalActionLib___ht, LocalActionLib___key, 2, flags)
+        call SaveStr(LocalActionLib__ht, LocalActionLib__key, 0, "(II)V")
+        call SaveInteger(LocalActionLib__ht, LocalActionLib__key, 1, order)
+        call SaveInteger(LocalActionLib__ht, LocalActionLib__key, 2, flags)
         call UnitId(("LocalOrder")) // INLINED!!
     endfunction
     
     //本地發布坐標命令
     function LocalPointOrder takes integer order,real x,real y,integer flags returns nothing
-        call SaveStr(LocalActionLib___ht, LocalActionLib___key, 0, "(IRRI)V")
-        call SaveInteger(LocalActionLib___ht, LocalActionLib___key, 1, order)
-        call SaveReal(LocalActionLib___ht, LocalActionLib___key, 2, x)
-        call SaveReal(LocalActionLib___ht, LocalActionLib___key, 3, y)
-        call SaveInteger(LocalActionLib___ht, LocalActionLib___key, 4, flags)
+        call SaveStr(LocalActionLib__ht, LocalActionLib__key, 0, "(IRRI)V")
+        call SaveInteger(LocalActionLib__ht, LocalActionLib__key, 1, order)
+        call SaveReal(LocalActionLib__ht, LocalActionLib__key, 2, x)
+        call SaveReal(LocalActionLib__ht, LocalActionLib__key, 3, y)
+        call SaveInteger(LocalActionLib__ht, LocalActionLib__key, 4, flags)
         call UnitId(("LocalPointOrder")) // INLINED!!
     endfunction
     
     //本地發布目標命令
     function LocalTargetOrder takes integer order,widget object,integer flags returns nothing
-        call SaveStr(LocalActionLib___ht, LocalActionLib___key, 0, "(IHwidget;I)V")
-        call SaveInteger(LocalActionLib___ht, LocalActionLib___key, 1, order)
-        call SaveWidgetHandle(LocalActionLib___ht, LocalActionLib___key, 2, object)
-        call SaveInteger(LocalActionLib___ht, LocalActionLib___key, 3, flags)
+        call SaveStr(LocalActionLib__ht, LocalActionLib__key, 0, "(IHwidget;I)V")
+        call SaveInteger(LocalActionLib__ht, LocalActionLib__key, 1, order)
+        call SaveWidgetHandle(LocalActionLib__ht, LocalActionLib__key, 2, object)
+        call SaveInteger(LocalActionLib__ht, LocalActionLib__key, 3, flags)
         call UnitId(("LocalTargetOrder")) // INLINED!!
     endfunction
     
     //獲取玩家當前選擇的單位
     function GetPlayerSelectedUnit takes player p returns unit
-        call SaveStr(LocalActionLib___ht, LocalActionLib___key, 0, "(I)Hunit;")
-        call RemoveSavedHandle(LocalActionLib___ht, LocalActionLib___key, 0)
-        call SaveInteger(LocalActionLib___ht, LocalActionLib___key, 1, GetHandleId(p))
+        call SaveStr(LocalActionLib__ht, LocalActionLib__key, 0, "(I)Hunit;")
+        call RemoveSavedHandle(LocalActionLib__ht, LocalActionLib__key, 0)
+        call SaveInteger(LocalActionLib__ht, LocalActionLib__key, 1, GetHandleId(p))
         call UnitId(("GetPlayerSelectedUnit")) // INLINED!!
-        return LoadUnitHandle(LocalActionLib___ht, LocalActionLib___key, 0)
+        return LoadUnitHandle(LocalActionLib__ht, LocalActionLib__key, 0)
     endfunction
     
     //獲取玩家當前鼠標指向的單位
     function GetTargetUnit takes nothing returns unit
-        call SaveStr(LocalActionLib___ht, LocalActionLib___key, 0, "(V)Hunit;")
-        call RemoveSavedHandle(LocalActionLib___ht, LocalActionLib___key, 0)
+        call SaveStr(LocalActionLib__ht, LocalActionLib__key, 0, "(V)Hunit;")
+        call RemoveSavedHandle(LocalActionLib__ht, LocalActionLib__key, 0)
         call UnitId(("GetTargetObject")) // INLINED!!
-        return LoadUnitHandle(LocalActionLib___ht, LocalActionLib___key, 0)
+        return LoadUnitHandle(LocalActionLib__ht, LocalActionLib__key, 0)
     endfunction
     
     //獲取玩家當前鼠標指向的物品
     function GetTargetItem takes nothing returns item
-        call SaveStr(LocalActionLib___ht, LocalActionLib___key, 0, "(V)Hitem;")
-        call RemoveSavedHandle(LocalActionLib___ht, LocalActionLib___key, 0)
+        call SaveStr(LocalActionLib__ht, LocalActionLib__key, 0, "(V)Hitem;")
+        call RemoveSavedHandle(LocalActionLib__ht, LocalActionLib__key, 0)
         call UnitId(("GetTargetObject")) // INLINED!!
-        return LoadItemHandle(LocalActionLib___ht, LocalActionLib___key, 0)
+        return LoadItemHandle(LocalActionLib__ht, LocalActionLib__key, 0)
     endfunction
     
     //獲取玩家當前鼠標指向的 可選擇的可破壞物
     function GetTargetDestructable takes nothing returns destructable
-        call SaveStr(LocalActionLib___ht, LocalActionLib___key, 0, "(V)Hdestructable;")
-        call RemoveSavedHandle(LocalActionLib___ht, LocalActionLib___key, 0)
+        call SaveStr(LocalActionLib__ht, LocalActionLib__key, 0, "(V)Hdestructable;")
+        call RemoveSavedHandle(LocalActionLib__ht, LocalActionLib__key, 0)
         call UnitId(("GetTargetObject")) // INLINED!!
-        return LoadDestructableHandle(LocalActionLib___ht, LocalActionLib___key, 0)
+        return LoadDestructableHandle(LocalActionLib__ht, LocalActionLib__key, 0)
     endfunction
     
     // 設置單位技能按鈕是否顯示   false 即隱藏 隱藏之後無法發布命令 跟玩家禁用相同
     //使用不會打斷命令  可以 在發布命令的時候  顯示 發布命令 隱藏 即可
     function SetUnitAbilityButtonShow takes unit u,integer id,boolean show returns nothing
-        call SaveStr(LocalActionLib___ht, LocalActionLib___key, 0, "(IIB)V")
-        call SaveInteger(LocalActionLib___ht, LocalActionLib___key, 1, GetHandleId(u))
-        call SaveInteger(LocalActionLib___ht, LocalActionLib___key, 2, id)
-        call SaveBoolean(LocalActionLib___ht, LocalActionLib___key, 3, show)
+        call SaveStr(LocalActionLib__ht, LocalActionLib__key, 0, "(IIB)V")
+        call SaveInteger(LocalActionLib__ht, LocalActionLib__key, 1, GetHandleId(u))
+        call SaveInteger(LocalActionLib__ht, LocalActionLib__key, 2, id)
+        call SaveBoolean(LocalActionLib__ht, LocalActionLib__key, 3, show)
         call UnitId(("SetUnitAbilityButtonShow")) // INLINED!!
     endfunction
     
     //設置 是否顯示FPS  顯示狀態下 調用false 可以隱藏 ，相反可以顯示
     function ShowFpsText takes boolean Open returns nothing
-        call SaveStr(LocalActionLib___ht, LocalActionLib___key, 0, "(B)V")
-        call SaveBoolean(LocalActionLib___ht, LocalActionLib___key, 1, Open)
+        call SaveStr(LocalActionLib__ht, LocalActionLib__key, 0, "(B)V")
+        call SaveBoolean(LocalActionLib__ht, LocalActionLib__key, 1, Open)
         call UnitId(("ShowFpsText")) // INLINED!!
     endfunction
     
     //獲取當前遊戲的 fps值  即 遊戲畫面的幀數
     function GetFps takes nothing returns real
-        call SaveStr(LocalActionLib___ht, LocalActionLib___key, 0, "()R")
+        call SaveStr(LocalActionLib__ht, LocalActionLib__key, 0, "()R")
         call UnitId(("GetFps")) // INLINED!!
-        return LoadReal(LocalActionLib___ht, LocalActionLib___key, 0)
+        return LoadReal(LocalActionLib__ht, LocalActionLib__key, 0)
     endfunction
     
     //獲取聊天狀態  有聊天輸入框的情況下 返回true  沒有返回false 
     //可以通過 d3d庫裡的模擬按鍵 模擬按下ESC 或者enter 來禁止玩家聊天
     function GetChatState takes nothing returns boolean
-        call SaveStr(LocalActionLib___ht, LocalActionLib___key, 0, "()B")
+        call SaveStr(LocalActionLib__ht, LocalActionLib__key, 0, "()B")
         call UnitId(("GetChatState")) // INLINED!!
-        return LoadBoolean(LocalActionLib___ht, LocalActionLib___key, 0)
+        return LoadBoolean(LocalActionLib__ht, LocalActionLib__key, 0)
     endfunction
   
 
 //library LocalActionLib ends
 //library d3d:
     
-    function d3d___Call takes string str returns nothing
+    function d3d__Call takes string str returns nothing
         call UnitId(str)
     endfunction
     
@@ -867,376 +865,376 @@ endfunction
     
     //獲取鼠標在屏幕的x軸
     function GetMouseVectorX takes nothing returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "()R")
+        call SaveStr(d3d__ht, d3d__key, 0, "()R")
         call UnitId(("GetMouseVectorX")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //獲取鼠標在屏幕的y軸
     function GetMouseVectorY takes nothing returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "()R")
+        call SaveStr(d3d__ht, d3d__key, 0, "()R")
         call UnitId(("GetMouseVectorY")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //獲取魔獸窗口寬
     function GetWindowWidth takes nothing returns integer
-        call SaveStr(d3d___ht, d3d___key, 0, "()I")
+        call SaveStr(d3d__ht, d3d__key, 0, "()I")
         call UnitId(("GetWindowWidth")) // INLINED!!
-        return LoadInteger(d3d___ht, d3d___key, 0)
+        return LoadInteger(d3d__ht, d3d__key, 0)
     endfunction
     
     //獲取魔獸窗口高
     function GetWindowHeight takes nothing returns integer
-        call SaveStr(d3d___ht, d3d___key, 0, "()I")
+        call SaveStr(d3d__ht, d3d__key, 0, "()I")
         call UnitId(("GetWindowHeight")) // INLINED!!
-        return LoadInteger(d3d___ht, d3d___key, 0)
+        return LoadInteger(d3d__ht, d3d__key, 0)
     endfunction
     
     //16進制函數
     function Hex takes integer i returns string
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)S")
-        call SaveInteger(d3d___ht, d3d___key, 1, i)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)S")
+        call SaveInteger(d3d__ht, d3d__key, 1, i)
         call UnitId(("Hex")) // INLINED!!
-    return LoadStr(d3d___ht, d3d___key, 0)
+    return LoadStr(d3d__ht, d3d__key, 0)
     endfunction
     
     //==================字體類================================
     //創建字體
     function CreateFont takes nothing returns integer
-        call SaveStr(d3d___ht, d3d___key, 0, "()I")
+        call SaveStr(d3d__ht, d3d__key, 0, "()I")
         call UnitId(("CreateFont")) // INLINED!!
-        return LoadInteger(d3d___ht, d3d___key, 0)
+        return LoadInteger(d3d__ht, d3d__key, 0)
     endfunction
     
     //銷毀字體
     function DestroyFont takes integer font returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)V")
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)V")
         call UnitId(("DestroyFont")) // INLINED!!
     endfunction
     
     //獲取字體寬
     function GetFontWidth takes integer font returns integer
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)I")
-        call SaveInteger(d3d___ht, d3d___key, 1, font)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)I")
+        call SaveInteger(d3d__ht, d3d__key, 1, font)
         call UnitId(("GetFontWidth")) // INLINED!!
-        return LoadInteger(d3d___ht, d3d___key, 0)
+        return LoadInteger(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置字體寬
     function SetFontWidth takes integer font,integer value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(II)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, font)
-        call SaveInteger(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(II)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, font)
+        call SaveInteger(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetFontWidth")) // INLINED!!
     endfunction
     
     //獲取字體高
     function GetFontHeight takes integer font returns integer
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)I")
-        call SaveInteger(d3d___ht, d3d___key, 1, font)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)I")
+        call SaveInteger(d3d__ht, d3d__key, 1, font)
         call UnitId(("GetFontHeight")) // INLINED!!
-        return LoadInteger(d3d___ht, d3d___key, 0)
+        return LoadInteger(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置字體高
     function SetFontHeight takes integer font,integer value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(II)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, font)
-        call SaveInteger(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(II)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, font)
+        call SaveInteger(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetFontHeight")) // INLINED!!
     endfunction
     
     //獲取字體粗細
     function GetFontWeight takes integer font returns integer
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)I")
-        call SaveInteger(d3d___ht, d3d___key, 1, font)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)I")
+        call SaveInteger(d3d__ht, d3d__key, 1, font)
         call UnitId(("GetFontWeight")) // INLINED!!
-        return LoadInteger(d3d___ht, d3d___key, 0)
+        return LoadInteger(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置字體粗細
     function SetFontWeight takes integer font,integer value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(II)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, font)
-        call SaveInteger(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(II)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, font)
+        call SaveInteger(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetFontWeight")) // INLINED!!
     endfunction
     
     //設置字體是否傾斜
     function SetFontItalic takes integer font,boolean value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IB)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, font)
-        call SaveBoolean(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IB)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, font)
+        call SaveBoolean(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetFontItalic")) // INLINED!!
     endfunction
     
     //獲取字體類型
     function GetFontFaceName takes integer font returns string
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)S")
-        call SaveInteger(d3d___ht, d3d___key, 1, font)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)S")
+        call SaveInteger(d3d__ht, d3d__key, 1, font)
         call UnitId(("GetFontFaceName")) // INLINED!!
-        return LoadStr(d3d___ht, d3d___key, 0)
+        return LoadStr(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置字體類型
     function SetFontFaceName takes integer font,string value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IS)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, font)
-        call SaveStr(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IS)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, font)
+        call SaveStr(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetFontFaceName")) // INLINED!!
     endfunction
     
     //==============寫字類===========================
     //創建文字 參數是 字體 內容 屏幕坐標x y 存活時間 顏色值
     function CreateText takes integer font,string str,real x,real y,real time,integer color returns integer
-        call SaveStr(d3d___ht, d3d___key, 0, "(ISRRRI)I")
-        call SaveInteger(d3d___ht, d3d___key, 1, font)
-        call SaveStr(d3d___ht, d3d___key, 2, str)
-        call SaveReal(d3d___ht, d3d___key, 3, x)
-        call SaveReal(d3d___ht, d3d___key, 4, y)
-        call SaveReal(d3d___ht, d3d___key, 5, time)
-        call SaveInteger(d3d___ht, d3d___key, 6, color)
+        call SaveStr(d3d__ht, d3d__key, 0, "(ISRRRI)I")
+        call SaveInteger(d3d__ht, d3d__key, 1, font)
+        call SaveStr(d3d__ht, d3d__key, 2, str)
+        call SaveReal(d3d__ht, d3d__key, 3, x)
+        call SaveReal(d3d__ht, d3d__key, 4, y)
+        call SaveReal(d3d__ht, d3d__key, 5, time)
+        call SaveInteger(d3d__ht, d3d__key, 6, color)
         call UnitId(("CreateText")) // INLINED!!
-        return LoadInteger(d3d___ht, d3d___key, 0)
+        return LoadInteger(d3d__ht, d3d__key, 0)
     endfunction
     
     //獲取文字內容
     function GetTextString takes integer text returns string
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)S")
-        call SaveInteger(d3d___ht, d3d___key, 1, text)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)S")
+        call SaveInteger(d3d__ht, d3d__key, 1, text)
         call UnitId(("GetTextString")) // INLINED!!
-        return LoadStr(d3d___ht, d3d___key, 0)
+        return LoadStr(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置文字內容
     function SetTextString takes integer text,string str returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IS)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, text)
-        call SaveStr(d3d___ht, d3d___key, 2, str)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IS)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, text)
+        call SaveStr(d3d__ht, d3d__key, 2, str)
         call UnitId(("SetTextString")) // INLINED!!
     endfunction
     
     //獲取文字坐標x軸
     function GetTextX takes integer text returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)R")
-        call SaveInteger(d3d___ht, d3d___key, 1, text)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)R")
+        call SaveInteger(d3d__ht, d3d__key, 1, text)
         call UnitId(("GetTextX")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置文字坐標x軸
     function SetTextX takes integer text,real x returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IR)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, text)
-        call SaveReal(d3d___ht, d3d___key, 2, x)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IR)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, text)
+        call SaveReal(d3d__ht, d3d__key, 2, x)
         call UnitId(("SetTextX")) // INLINED!!
     endfunction
     
     //獲取文字坐標y軸
     function GetTextY takes integer text returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)R")
-        call SaveInteger(d3d___ht, d3d___key, 1, text)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)R")
+        call SaveInteger(d3d__ht, d3d__key, 1, text)
         call UnitId(("GetTextY")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置文字坐標y軸
     function SetTextY takes integer text,real y returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IR)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, text)
-        call SaveReal(d3d___ht, d3d___key, 2, y)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IR)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, text)
+        call SaveReal(d3d__ht, d3d__key, 2, y)
         call UnitId(("SetTextY")) // INLINED!!
     endfunction
     
     //獲取文字剩餘存活時間
     function GetTextTime takes integer text returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)R")
-        call SaveInteger(d3d___ht, d3d___key, 1, text)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)R")
+        call SaveInteger(d3d__ht, d3d__key, 1, text)
         call UnitId(("GetTextTime")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置文字剩餘存活時間
     function SetTextTime takes integer text,real value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IR)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, text)
-        call SaveReal(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IR)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, text)
+        call SaveReal(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetTextTime")) // INLINED!!
     endfunction
     
     //獲取文字顏色 16進制 0xFFFFFFFF 前2位表示透明 後6位表示 紅綠藍
     function GetTextColor takes integer text returns integer
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)I")
-        call SaveInteger(d3d___ht, d3d___key, 1, text)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)I")
+        call SaveInteger(d3d__ht, d3d__key, 1, text)
         call UnitId(("GetTextColor")) // INLINED!!
-        return LoadInteger(d3d___ht, d3d___key, 0)
+        return LoadInteger(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置文字顏色 16進制
     function SetTextColor takes integer text,integer value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(II)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, text)
-        call SaveInteger(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(II)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, text)
+        call SaveInteger(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetTextColor")) // INLINED!!
     endfunction
     
     //創建屏幕圖像 圖像路徑 相對魔獸窗口x軸 相對魔獸窗口y軸 相對魔獸窗口 寬度 相對魔獸窗口 高度 等級
     function CreateTexture takes string path,real x,real y,real width,real height,integer color,integer level returns integer
-        call SaveStr(d3d___ht, d3d___key, 0, "(SRRRRII)I")
-        call SaveStr(d3d___ht, d3d___key, 1, path)
-        call SaveReal(d3d___ht, d3d___key, 2, x)
-        call SaveReal(d3d___ht, d3d___key, 3, y)
-        call SaveReal(d3d___ht, d3d___key, 4, width)
-        call SaveReal(d3d___ht, d3d___key, 5, height)
-        call SaveInteger(d3d___ht, d3d___key, 6, color)
-        call SaveInteger(d3d___ht, d3d___key, 7, level)
+        call SaveStr(d3d__ht, d3d__key, 0, "(SRRRRII)I")
+        call SaveStr(d3d__ht, d3d__key, 1, path)
+        call SaveReal(d3d__ht, d3d__key, 2, x)
+        call SaveReal(d3d__ht, d3d__key, 3, y)
+        call SaveReal(d3d__ht, d3d__key, 4, width)
+        call SaveReal(d3d__ht, d3d__key, 5, height)
+        call SaveInteger(d3d__ht, d3d__key, 6, color)
+        call SaveInteger(d3d__ht, d3d__key, 7, level)
         call UnitId(("CreateTexture")) // INLINED!!
-        return LoadInteger(d3d___ht, d3d___key, 0)
+        return LoadInteger(d3d__ht, d3d__key, 0)
     endfunction
     
     //刪除圖像
     function DestroyTexture takes integer texture returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
         call UnitId(("DestroyTexture")) // INLINED!!
     endfunction
     
     //獲取圖像相對魔獸窗口坐標x軸
     function GetTextureX takes integer texture returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)R")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)R")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
         call UnitId(("GetTextureX")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置圖像相對魔獸窗口坐標x軸
     function SetTextureX takes integer texture,real value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IR)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
-        call SaveReal(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IR)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
+        call SaveReal(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetTextureX")) // INLINED!!
     endfunction
     
     //獲取圖像相對魔獸窗口坐標y軸
     function GetTextureY takes integer texture returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)R")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)R")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
         call UnitId(("GetTextureY")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置圖像相對魔獸窗口坐標y軸
     function SetTextureY takes integer texture,real value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IR)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
-        call SaveReal(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IR)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
+        call SaveReal(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetTextureY")) // INLINED!!
     endfunction
     
     //獲取圖像相對魔獸窗口 寬度
     function GetTextureWidth takes integer texture returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)R")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)R")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
         call UnitId(("GetTextureWidth")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置圖像相對魔獸窗口 寬度
     function SetTextureWidth takes integer texture,real value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IR)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
-        call SaveReal(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IR)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
+        call SaveReal(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetTextureWidth")) // INLINED!!
     endfunction
     
     //獲取圖像相對魔獸窗口 高度
     function GetTextureHeight takes integer texture returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)R")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)R")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
         call UnitId(("GetTextureHeight")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置圖像相對魔獸窗口 高度
     function SetTextureHeight takes integer texture,real value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IR)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
-        call SaveReal(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IR)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
+        call SaveReal(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetTextureHeight")) // INLINED!!
     endfunction
     
     //獲取圖像顏色
     function GetTextureColor takes integer texture returns integer
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)I")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)I")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
         call UnitId(("GetTextureColor")) // INLINED!!
-        return LoadInteger(d3d___ht, d3d___key, 0)
+        return LoadInteger(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置圖像顏色
     function SetTextureColor takes integer texture,integer value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(II)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
-        call SaveInteger(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(II)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
+        call SaveInteger(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetTextureColor")) // INLINED!!
     endfunction
     
     //獲取圖像級別 級別越高 越上層顯示
     function GetTextureLevel takes integer texture returns integer
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)I")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)I")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
         call UnitId(("GetTextureLevel")) // INLINED!!
-        return LoadInteger(d3d___ht, d3d___key, 0)
+        return LoadInteger(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置圖像級別 級別越高越上層顯示
     function SetTextureLevel takes integer texture,integer value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(II)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
-        call SaveInteger(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(II)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
+        call SaveInteger(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetTextureLevel")) // INLINED!!
     endfunction
     
     //獲取圖像旋轉角度
     function GetTextureRotation takes integer texture returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)R")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)R")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
         call UnitId(("GetTextureRotation")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置圖像旋轉角度  參數 圖像,角度  角度制
     function SetTextureRotation takes integer texture,real value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IR)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
-        call SaveReal(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IR)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
+        call SaveReal(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetTextureRotation")) // INLINED!!
     endfunction
     
     //獲取圖像像素的 寬
     function GetTexturePixelWidth takes integer texture returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)R")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)R")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
         call UnitId(("GetTexturePixelWidth")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //獲取圖像像素的 高  可以在  寬 * 高的矩形裡進行切割
     function GetTexturePixelHeight takes integer texture returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)R")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)R")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
         call UnitId(("GetTexturePixelWidth")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //獲取圖形切割區域 默認完整的圖形區域
     //注意！ 返回的rect 是handle 記得用 RemoveRect 排泄
     function GetTextureSrcRect takes integer texture returns rect
-        call SaveStr(d3d___ht, d3d___key, 0, "(I)Hrect;")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
+        call SaveStr(d3d__ht, d3d__key, 0, "(I)Hrect;")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
         call UnitId(("GetTextureSrcRect")) // INLINED!!
-        return LoadRectHandle(d3d___ht, d3d___key, 0)
+        return LoadRectHandle(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置圖形切割區域  在原圖片上按 rect 矩形進行切割
@@ -1244,34 +1242,34 @@ endfunction
     //比如 128*256的圖片 完整的圖片的 矩形應該是 左=0 下=0 右=128 上=256
     // 左上右下 表示 圖片像素裡的 寬跟高的範圍
     function SetTextureSrcRect takes integer texture,rect value returns nothing
-        call RemoveSavedHandle(d3d___ht, d3d___key, 0)
-        call SaveStr(d3d___ht, d3d___key, 0, "(IHrect;)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
-        call SaveRectHandle(d3d___ht, d3d___key, 2, value)
+        call RemoveSavedHandle(d3d__ht, d3d__key, 0)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IHrect;)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
+        call SaveRectHandle(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetTextureSrcRect")) // INLINED!!
     endfunction
     
     //更改圖像圖形  參數 圖像句柄 新的圖形路徑
     function SetTexture takes integer texture,string value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IS)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
-        call SaveStr(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IS)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
+        call SaveStr(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetTexture")) // INLINED!!
     endfunction
     
     //設置圖像是否顯示 隱藏 true顯示  false隱藏
     function SetTextureShow takes integer texture,boolean value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IB)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
-        call SaveBoolean(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IB)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
+        call SaveBoolean(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetTextureShow")) // INLINED!!
     endfunction
     
     //設置圖像是否響應事件 默認true 為開啟觸發狀態 false為關閉觸發
     function SetTextureTrigger takes integer texture,boolean value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IB)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
-        call SaveBoolean(d3d___ht, d3d___key, 2, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IB)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
+        call SaveBoolean(d3d__ht, d3d__key, 2, value)
         call UnitId(("SetTextureTrigger")) // INLINED!!
     endfunction
     
@@ -1325,28 +1323,28 @@ endfunction
     //返回事件句柄
     //==================================================
     function TextureAddEvent takes integer texture,integer order,code wCallBack,code lCallBack returns integer
-        call SaveStr(d3d___ht, d3d___key, 0, "(IIII)I")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
-        call SaveInteger(d3d___ht, d3d___key, 2, order)
-        call SaveInteger(d3d___ht, d3d___key, 3, GetFuncAddr(wCallBack))
-        call SaveInteger(d3d___ht, d3d___key, 4, GetFuncAddr(lCallBack))
+        call SaveStr(d3d__ht, d3d__key, 0, "(IIII)I")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
+        call SaveInteger(d3d__ht, d3d__key, 2, order)
+        call SaveInteger(d3d__ht, d3d__key, 3, GetFuncAddr(wCallBack))
+        call SaveInteger(d3d__ht, d3d__key, 4, GetFuncAddr(lCallBack))
         call UnitId(("TextureAddEvent")) // INLINED!!
-        return LoadInteger(d3d___ht, d3d___key, 0)
+        return LoadInteger(d3d__ht, d3d__key, 0)
     endfunction
     
     //圖像刪除事件 參數 圖像句柄 事件句柄
     function TextureRemoveEvent takes integer texture,integer Event returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(II)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, texture)
-        call SaveInteger(d3d___ht, d3d___key, 2, Event)
+        call SaveStr(d3d__ht, d3d__key, 0, "(II)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, texture)
+        call SaveInteger(d3d__ht, d3d__key, 2, Event)
         call UnitId(("TextureRemoveEvent")) // INLINED!!
     endfunction
     
     //設置鍵位狀態 指定鍵位 按下或彈起狀態  true為按下 false為彈起
     function SetKeyboard takes integer Key,boolean up returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(IB)V")
-        call SaveInteger(d3d___ht, d3d___key, 1, Key)
-        call SaveBoolean(d3d___ht, d3d___key, 2, up)
+        call SaveStr(d3d__ht, d3d__key, 0, "(IB)V")
+        call SaveInteger(d3d__ht, d3d__key, 1, Key)
+        call SaveBoolean(d3d__ht, d3d__key, 2, up)
         call UnitId(("SetKeyboard")) // INLINED!!
     endfunction
     
@@ -1364,22 +1362,22 @@ endfunction
     
     //獲取響應的鍵位
     function GetTriggerKeyboard takes nothing returns integer
-        return LoadInteger(d3d___ht, (GetHandleId(GetExpiredTimer())), 0x100) // INLINED!!
+        return LoadInteger(d3d__ht, (GetHandleId(GetExpiredTimer())), 0x100) // INLINED!!
     endfunction
     
     //獲取觸發圖像
     function GetTriggerTexture takes nothing returns integer
-        return LoadInteger(d3d___ht, (GetHandleId(GetExpiredTimer())), 0xff) // INLINED!!
+        return LoadInteger(d3d__ht, (GetHandleId(GetExpiredTimer())), 0xff) // INLINED!!
     endfunction
     
     //獲取響應事件
     function GetTriggerEvent takes nothing returns integer
-        return LoadInteger(d3d___ht, (GetHandleId(GetExpiredTimer())), 0xfe) // INLINED!!
+        return LoadInteger(d3d__ht, (GetHandleId(GetExpiredTimer())), 0xfe) // INLINED!!
     endfunction
     
     // 獲取響應的鍵盤操作 按下為true 彈起為false
     function GetTriggerKeyboardAction takes nothing returns boolean
-        if ( LoadInteger(d3d___ht, (GetHandleId(GetExpiredTimer())), 0x101) == 0 ) then // INLINED!!
+        if ( LoadInteger(d3d__ht, (GetHandleId(GetExpiredTimer())), 0x101) == 0 ) then // INLINED!!
             return false
         endif
         return true
@@ -1388,36 +1386,36 @@ endfunction
     //====================魔獸控制台UI=============================
     //設置是否隱藏控制台UI true為隱藏 false為恢復
     function ShowConsole takes boolean show returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(B)V")
-        call SaveBoolean(d3d___ht, d3d___key, 1, show)
+        call SaveStr(d3d__ht, d3d__key, 0, "(B)V")
+        call SaveBoolean(d3d__ht, d3d__key, 1, show)
         call UnitId(("ShowConsole")) // INLINED!!
     endfunction
     
     //獲取小地圖圖形位置X軸向量
     function GetLittleMapX takes nothing returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "()R")
+        call SaveStr(d3d__ht, d3d__key, 0, "()R")
         call UnitId(("GetLittleMapX")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置小地圖圖形位置X軸向量
     function SetLittleMapX takes real value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(R)V")
-        call SaveReal(d3d___ht, d3d___key, 1, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(R)V")
+        call SaveReal(d3d__ht, d3d__key, 1, value)
         call UnitId(("SetLittleMapX")) // INLINED!!
     endfunction
     
     //獲取小地圖圖形位置y軸向量
     function GetLittleMapY takes nothing returns real
-        call SaveStr(d3d___ht, d3d___key, 0, "()R")
+        call SaveStr(d3d__ht, d3d__key, 0, "()R")
         call UnitId(("GetLittleMapY")) // INLINED!!
-        return LoadReal(d3d___ht, d3d___key, 0)
+        return LoadReal(d3d__ht, d3d__key, 0)
     endfunction
     
     //設置小地圖圖形位置Y軸向量
     function SetLittleMapY takes real value returns nothing
-        call SaveStr(d3d___ht, d3d___key, 0, "(R)V")
-        call SaveReal(d3d___ht, d3d___key, 1, value)
+        call SaveStr(d3d__ht, d3d__key, 0, "(R)V")
+        call SaveReal(d3d__ht, d3d__key, 1, value)
         call UnitId(("SetLittleMapY")) // INLINED!!
     endfunction
     
@@ -1481,7 +1479,7 @@ endfunction
 // 
 //   Warcraft III map script
 //   Generated by the Warcraft III World Editor
-//   Date: Sun Oct 16 19:43:35 2022
+//   Date: Sun Oct 16 23:35:33 2022
 //   Map Author: 作者：问号 
 // 
 //===========================================================================
@@ -1681,6 +1679,9 @@ endfunction
 //*
 //***************************************************************************
 //===========================================================================
+// Trigger: main
+//===========================================================================
+//===========================================================================
 // Trigger: japi-constant-lib
 //
 //   
@@ -1852,17 +1853,14 @@ endfunction
 //TESH.scrollpos=0
 //TESH.alwaysfold=0
 //===========================================================================
-// Trigger: main
-//===========================================================================
-//===========================================================================
 function InitCustomTriggers takes nothing returns nothing
+    //Function not found: call InitTrig_main()
     //Function not found: call InitTrig_japi_constant_lib()
     //Function not found: call InitTrig_japi()
     //Function not found: call InitTrig_d3d()
     //Function not found: call InitTrig_async_japi()
     call InitTrig_check_version()
     //Function not found: call InitTrig_wenhao_texture()
-    //Function not found: call InitTrig_main()
 endfunction
 //***************************************************************************
 //*
@@ -1913,7 +1911,7 @@ function main takes nothing returns nothing
     call CreateAllUnits()
     call InitBlizzard()
 
-call ExecuteFunc("jasshelper__initstructs34829125")
+call ExecuteFunc("jasshelper__initstructs48747593")
 call ExecuteFunc("Base__Init")
 
     call InitGlobals()
@@ -1950,7 +1948,7 @@ local integer this=f__arg_this
    return true
 endfunction
 
-function jasshelper__initstructs34829125 takes nothing returns nothing
+function jasshelper__initstructs48747593 takes nothing returns nothing
     set st__LOGFONT_onDestroy=CreateTrigger()
     call TriggerAddCondition(st__LOGFONT_onDestroy,Condition( function sa__LOGFONT_onDestroy))
 

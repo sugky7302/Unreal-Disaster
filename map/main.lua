@@ -2,7 +2,12 @@
 local require = require
 local runtime = require 'jass.runtime'
 local console = require 'jass.console'
-Console = {}
+
+function Import(path)
+    return require('scripts.' .. path)
+end
+
+local Console = {}
 -- 判斷是否為發布版本
 Console.release = not pcall(require, 'lua.currentpath')
 -- 設定版本號
@@ -27,16 +32,12 @@ end
 function runtime.error_handle(msg)
     Console.error_handle(msg)
 end
---? ?版本和?布版本的?本路?
-if Console.release then
-    package.path = package.path .. [[;Poi\]] .. Console.version .. [[\ ?.lua;scripts\ ?.lua]]
-end
 if not Console.release then
     -- 調試器端口
     runtime.debugger = 4279
 end
+
 local function main()
-    print("hello world")
-    require "wenhao_texture"
+    Import("abc.wenhao_texture")
 end
 main()

@@ -1,3 +1,0 @@
-unit/*鼠标指向单位*/: unit
-item/*鼠标指向物品*/: item
-destructable/*可破坏物*/: destructable
