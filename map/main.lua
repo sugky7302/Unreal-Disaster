@@ -61,5 +61,7 @@ end
 local function main()
     Debug(table.concat({"---Start Console---\nLua version: ", runtime.version, "\nMap version: ", ENV.VERSION, "\nMode: ", ENV.MODE, "\n-------------------"}))
     Import("test.wenhao_texture")
+    Import("shared.timer")
+    Import("shared.timer")
 end
 main()

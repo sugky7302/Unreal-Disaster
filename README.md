@@ -23,9 +23,11 @@
 ├─map：地圖的原始碼
 ├─resource：地圖的靜態檔
 ├─table：地圖的數據檔
+├─trigger：地圖的觸發檔
 ├─w3x2lni：自動生成的 w3x2lni 格式轉換工具的版本紀錄
 ├─scripts：程式碼
 |  ├─shared：公用包
+|  ├─—file_version.json：記錄所有 lua 版本，用在 hotfix 上。
 ```
 
 ## 使用
