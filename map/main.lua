@@ -17,6 +17,8 @@ ENV = {
     MODE = "debug",
     -- 版本號
     VERSION = "0.2.0",
+    -- 記錄所有 lua 的版本號。當啟動 hotfix 時，會將此表中的版本號與磁盤上的版本號進行比對，如果不一致則會重新加載
+    VERSION_RECORDS = require "scripts.file_version",
     -- 顯示錯誤訊息
     error = function(msg)
         print("---------------------------------------")
@@ -27,10 +29,10 @@ ENV = {
 }
 
 ---於 debug 模式下顯示訊息
----@param msg string - 訊息
-function Debug(msg)
+---@param ... string - 訊息
+function Debug(...)
     if ENV.MODE == "debug" then
-        print(msg)
+        print(...)
     end
 end
 
@@ -61,7 +63,6 @@ end
 local function main()
     Debug(table.concat({"---Start Console---\nLua version: ", runtime.version, "\nMap version: ", ENV.VERSION, "\nMode: ", ENV.MODE, "\n-------------------"}))
     Import("test.wenhao_texture")
-    Import("shared.timer")
     Import("shared.timer")
 end
 main()

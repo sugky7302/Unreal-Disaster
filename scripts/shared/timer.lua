@@ -1,14 +1,22 @@
 --#region 中心計時器的實現
 local jass = require 'jass.common'
 local PERIOD, INSTRUCTION_COUNT = 0.001, 10
-local timer_queue = {}
-local current_frame = 1
+
+---這裡利用 ENV 類似全局變量的特性, 來儲存中心計時器
+---不然 hotfix 可能會重置中心計時器
+if not ENV._TIMER then
+    ENV._TIMER = jass.CreateTimer()
+    ENV._TIMER_QUEUE = {}
+    ENV._TIMER_FRAME = 1
+end
+
+local timer_queue = ENV._TIMER_QUEUE
+local current_frame = ENV._TIMER_FRAME
 local ExecuteOrder, ProcessOrder, Insert, Delete, Frame
 
 ---啟動一個中心計時器
 local function Start()
-    print(1)
-    jass.TimerStart(jass.CreateTimer(), PERIOD * INSTRUCTION_COUNT, true,function()
+    jass.TimerStart(ENV._TIMER, PERIOD * INSTRUCTION_COUNT, true,function()
         -- NOTE: 捨棄end_frame。原來會用到是因為Moe master是用while做，while執行速度比較慢，
         --       因此我採用for去處理，這就不需要end_frame了。 - 2020-02-26
         -- NOTE: 反正只是要循環10次，不用特別用current_frame和end_frame，反而麻煩。 - 2020-02-26
@@ -19,6 +27,9 @@ local function Start()
             --       很自然就達到補幀的效果。 - 2020-02-26
             current_frame = current_frame + 1
         end
+
+        -- NOTE: 將當前幀數存回全局變量，以便 hotfix 重置計時器時能夠繼續計時。 - 2022-10-19
+        ENV._TIMER_FRAME = current_frame
     end)
 end
 
