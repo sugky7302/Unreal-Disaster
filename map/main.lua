@@ -56,7 +56,18 @@ end
 ---@param path string - 文件路徑 
 ---@return unknown - 如果文件有 return 會回傳
 function Import(path)
-    return require('scripts.' .. path)
+    local concat, pcall = table.concat, pcall
+    local path = {'scripts.', path}
+
+    -- 先試著讀取文件，如果讀取失敗則在後面追加 __init__
+    local success, result = pcall(require, concat(path))
+    if not success then
+        path[#path + 1] = '.__init__'
+        success, result = pcall(require, concat(path))
+    end
+
+    print(path, success, result)
+    return result
 end
 
 -- 入口函數
@@ -64,7 +75,6 @@ local function main()
     Debug(table.concat({"---Start Console---\nLua version: ", runtime.version, "\nMap version: ", ENV.VERSION, "\nMode: ", ENV.MODE, "\n-------------------"}))
     Import("test.wenhao_texture")
     Import("shared.timer")
-    Import("shared.hotfix")
-    Import("shared.hotfix")
+    Import("shared.behavior-tree.composite")
 end
 main()
