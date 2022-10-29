@@ -67,19 +67,20 @@ end
 ---節點的執行函數
 ---這裡會依序執行子節點，直到有子節點返回成功或失敗。
 ---所以不要用 return，不然棧會堆太多。
+---* 調用 start() 時會先調用裝飾函數。
 ---@override BTNode:run()
 function cls:run()
     if self._index > #self._children then
         return true
     end
 
-    -- 技能樹收到暫停命令
+    -- 行為樹收到暫停命令
     if self.tree and self.tree._is_pause then
         return false
     end
 
     if not self._is_child_running then
-        self._children[self._index]:start()
+        self._children[self._index]:decorate():start()
     end
 
     self._children[self._index]:run()

@@ -1,4 +1,5 @@
 local class = Import('std.class')
+local ipairs = ipairs
 
 ---@class BTNode
 --- Behavior Tree Node
@@ -45,7 +46,7 @@ end
 ---@param decorator BTDecorator - 裝飾節點
 ---@return BTNode - 實例
 function cls:addDecorator(decorator)
-    table.insert(self._decorator, decorator)
+    self._decorator[#self._decorator+1] = decorator
     return self
 end
 
@@ -61,6 +62,16 @@ function cls:hasDecorator(name)
         end
     end
     return false
+end
+
+---裝飾節點
+---@return BTNode - 實例
+function cls:decorate()
+    for _, v in ipairs(self._decorator) do
+        self = v:decorate(self)
+    end
+
+    return self
 end
 
 ---空白的啟動函數，只會在第一次執行。子類別可以覆寫。
