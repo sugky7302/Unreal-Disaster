@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased.10 - 2022-10-29
+## Unreleased.11 - 2022-10-30
 ### Added:
 - 定稿「血脈」的排版、文字風格。
 - 新增行為樹模組。
@@ -21,7 +21,7 @@
 ### Changed:
 - 簡化 main.lua。
 
-[0.2.0]:https://github.com/sugky7302/Unreal-Disaster/commit/77793baea0fa3a118218cab192f04411f2b87a31
+[0.2.0]:https://github.com/sugky7302/Unreal-Disaster/commit/51fe1556e1acf7526dae1c08faadb026385f64c3
 
 ## [0.1.0.0][0.1.0] - 2022-10-15 - first commit
 [0.1.0]:https://github.com/sugky7302/Unreal-Disaster/commit/1214be16d41895690c5207cd73cf89f9de139e1c
