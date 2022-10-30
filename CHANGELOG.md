@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased.11 - 2022-10-30
+## Unreleased.12 - 2022-10-30
 ### Added:
 - 定稿「血脈」的排版、文字風格。
 - 新增行為樹模組。
