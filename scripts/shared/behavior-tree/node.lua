@@ -1,5 +1,4 @@
 local class = Import('std.class')
-local ipairs = ipairs
 
 ---@class BTNode
 --- Behavior Tree Node
@@ -10,18 +9,6 @@ local ipairs = ipairs
 ---@field parent BTNode - 父節點
 ---@field tree BehaviorTree - 行為樹
 local cls = class('BTNode')
-
----創建一個子類別，並綁定在 BTModule 上。
----@param name string - 子類別名稱
-function cls.inherit(name)
-    -- 生成子類別
-    local mt = class('BT' .. name, cls)
-
-    -- 綁定在 BTModule 上
-    Import('shared.behavior-tree.module'):import(name)
-
-    return mt
-end
 
 ---constructor
 ---@param args table<string, any> - 參數
@@ -46,7 +33,7 @@ end
 ---@param decorator BTDecorator - 裝飾節點
 ---@return BTNode - 實例
 function cls:addDecorator(decorator)
-    self._decorator[#self._decorator+1] = decorator
+    table.insert(self._decorator, decorator)
     return self
 end
 
@@ -62,16 +49,6 @@ function cls:hasDecorator(name)
         end
     end
     return false
-end
-
----裝飾節點
----@return BTNode - 實例
-function cls:decorate()
-    for _, v in ipairs(self._decorator) do
-        self = v:decorate(self)
-    end
-
-    return self
 end
 
 ---空白的啟動函數，只會在第一次執行。子類別可以覆寫。

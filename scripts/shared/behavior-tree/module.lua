@@ -8,9 +8,9 @@ local cls = {}
 ---@param template table<string, any> - 模版
 ---@return BTModule
 function cls:import(name, template)
-    assert(not self[name], "請不要輸入重複的名稱")
+    assert(not cls[name], "請不要輸入重複的名稱")
 
-    self[name] = template
+    cls[name] = template
 
     if type(template) == 'table' and template.type == 'BTNode' then
         template._name = name

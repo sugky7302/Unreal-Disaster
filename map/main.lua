@@ -1,7 +1,9 @@
 local require = require
-local cj = require 'jass.common'
 local runtime = require 'jass.runtime'
 local console = require 'jass.console'
+
+-- 重載 print，自動轉換編碼
+print = console.write
 
 -- 將 handle 等級設為 0（地圖中所有的 handle 均使用 table 封裝）
 runtime.handle_level = 0
@@ -25,18 +27,6 @@ ENV = {
         print("---------------------------------------")
     end
 }
-
--- 重載 print，自動轉換編碼
-if ENV.MODE == 'debug' then
-    print = console.write
-else if ENV.MODE == 'release' then
-    print = function(message)
-        for i = 0, 11 do
-            cj.DisplayTextToPlayer(cj.Player(i), 0, 0, message)
-        end
-    end
-end
-
 
 ---於 debug 模式下顯示訊息
 ---@param ... string - 訊息

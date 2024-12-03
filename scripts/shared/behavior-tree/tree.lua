@@ -59,7 +59,7 @@ Parse = function(self, data, parent_args)
         end
     end
 
-    local parent = Module.export(data.id) and Module.export(data.id):new(data.args) or Module.export("C-Sequence"):new(data.args)
+    local parent = Module.export(data.id) and Module.export(data.id):new(data.args) or Module.export("Sequence"):new(data.args)
     parent.tree = self
     
     -- 如果只有單一節點表示沒有底下沒有節點了

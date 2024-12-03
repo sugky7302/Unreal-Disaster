@@ -1,15 +1,9 @@
-输入路径：E:/projects/UnrealDisaster
-输出路径：E:/projects/UnrealDisaster/UnrealDisaster.w3x
+输入路径：C:/Users/user/Documents/project/my/UnrealDisaster
+输出路径：C:/Users/user/Documents/project/my/UnrealDisaster.w3x
 输入格式：Lni
 输出模式：obj
-结果：2 个错误，0 条警告
-用时：1.273 秒
-==========================
-严重错误 (2)
-==========================
-还有1个文件没有读取 - 这些文件被丢弃了,请包含完整(listfile)
-读取(480/481)个文件
-
+结果：0 个错误，0 条警告
+用时：0.594 秒
 ==========================
 保存到wts中的文本 (1)
 ==========================

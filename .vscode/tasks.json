@@ -4,13 +4,14 @@
     "tasks": [
         {
             "label": "執行",
-            "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/bin/w3x2lni-lua.exe\"",
+            "type": "shell",
+            "command": "${workspaceFolder}\\.vscode\\run.bat",
             "args": [
-                ".\\tools\\執行.lua",
-                "${workspaceRoot}"
+                "${workspaceRoot}",
+                "UnrealDisaster"
             ],
             "dependsOrder": "sequence",
-            "dependsOn": ["打包(Obj)"]
+            "dependsOn": ["打包"]
         },
         {
             "label": "配置",
@@ -41,8 +42,9 @@
             }
         },
         {
-            "label": "打包(Obj)",
-            "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/w2l.exe\"",
+            "label": "打包",
+            "type": "shell",
+            "command": "${workspaceFolder}\\.vscode\\w3x2lni.bat",
             "presentation": {
                 "echo": false,
                 "reveal": "always",
@@ -50,14 +52,14 @@
                 "panel": "new"
             },
             "args": [
-                "obj",
                 "${workspaceRoot}",
-                "${workspaceRoot}/UnrealDisaster.w3x"
+                "obj",
+                "UnrealDisaster"
             ]
         },
         {
-            "label": "解包(Lni)",
-            "command": "chcp 65001 && \"${workspaceRoot}/tools/w3x2lni/w2l.exe\"",
+            "label": "解包",
+            "command": "${workspaceFolder}\\.vscode\\w3x2lni.bat",
             "presentation": {
                 "echo": false,
                 "reveal": "always",
@@ -65,9 +67,9 @@
                 "panel": "new"
             },
             "args": [
+                "${workspaceRoot}",
                 "lni",
-                "${workspaceRoot}/UnrealDisaster.w3x",
-                "${workspaceRoot}"
+                "UnrealDisaster",
             ]
         },
         {

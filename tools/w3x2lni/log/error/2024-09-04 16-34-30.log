@@ -1,0 +1,20 @@
+Date: 2024-09-04 16:34:30
+Version: 2.5.2
+Commit: e8d062a56916f724deafd6b17df3cb7282ea7597
+Stack:
+----------------------------------------
+C:\Users\user\Documents\project\my\Unreal-Disaster\tools\w3x2lni\bin\w3x2lni-lua.exe: .\core\slk/backend_convertjass.lua:32: stack overflow
+stack traceback:
+	.\core\slk/backend_convertjass.lua:32: in function <.\core\slk/backend_convertjass.lua:31>
+	[C]: in function 'lpeglabel.match'
+	.\core\slk/backend_convertjass.lua:38: in upvalue 'convert_wts'
+	.\core\slk/backend_convertjass.lua:68: in method 'backend_convertjass'
+	.\core\slk/backend.lua:426: in method 'backend'
+	.\backend\convert.lua:140: in function 'backend.convert'
+	.\backend\cli\lni.lua:4: in function 'backend.cli.lni'
+	.\backend\init.lua:12: in main chunk
+	[C]: in function 'require'
+	...project\my\Unreal-Disaster\tools\w3x2lni\script\main.lua:2: in main chunk
+	[C]: in ?
+
+----------------------------------------

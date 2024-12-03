@@ -1,22 +1,13 @@
+---@require
+local Node = Import('shared.behavior-tree.node')
+
 ---@class BTComposite : BTNode
 ---處理流程的特殊節點，可以包含多個子節點。
 ---
 ---@field _children BTNode[] - 子節點
 ---@field _index number - 當前執行的子節點索引
 ---@field _is_child_running boolean - 是否有子節點正在執行
-local cls = Import('std.class')("BTComposite", Import('shared.behavior-tree.node'))
-
----創建一個子類別，並綁定在 BTModule 上。
----@param name string - 子類別名稱
-function cls.inherit(name)
-    -- 生成子類別
-    local mt = Import('std.class')('BT' .. name, cls)
-
-    -- 綁定在 BTModule 上
-    Import('shared.behavior-tree.module'):import(name)
-
-    return mt
-end
+local cls = Import('std.class')("BTComposite", Node)
 
 ---constructor
 ---@param args table<string, any> - 參數
@@ -67,20 +58,19 @@ end
 ---節點的執行函數
 ---這裡會依序執行子節點，直到有子節點返回成功或失敗。
 ---所以不要用 return，不然棧會堆太多。
----* 調用 start() 時會先調用裝飾函數。
 ---@override BTNode:run()
 function cls:run()
     if self._index > #self._children then
         return true
     end
 
-    -- 行為樹收到暫停命令
+    -- 技能樹收到暫停命令
     if self.tree and self.tree._is_pause then
         return false
     end
 
     if not self._is_child_running then
-        self._children[self._index]:decorate():start()
+        self._children[self._index]:start()
     end
 
     self._children[self._index]:run()
